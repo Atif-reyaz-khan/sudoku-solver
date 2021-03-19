@@ -5,10 +5,48 @@ const N=9;
 
 const app=express();
 app.set('view engine', 'ejs');
+function isvalid(grid,r,c,num){
+  for(var x=0;x<=N-1;x++){
+    
+    if(x!=c && grid[r][x]==num){
+      console.log('r');
+      return false;
+    }
+  }
+  for(var x=0;x<=N-1;x++){
+    if(x!=r && grid[x][c]==num){
+      console.log('c');
+      return false;
+    }
+ 
+  }
+  var startRow=r-r%3;
+  var startCol=c-c%3;
+  for(var i=0;i<3;i++)
+  {
+    for(var j=0;j<3;j++){
+      
+      if(grid[i+startRow][j+startCol]==num)
+      {if(r==i+startRow && c==j+startCol)
+        {
+          continue;
+        }
+        else{
+          console.log('cir')
+          return false;
+
+        }
+       
+      }
+    }
+  }
+  return true;
+}
 
 function isSafe(grid,r,c,num){
   for(var x=0;x<=N-1;x++){
-    if(grid[r][x]==num){
+    
+    if( grid[r][x]==num){
       return false;
     }
   }
@@ -100,8 +138,8 @@ for(var i=0;i<9;i++){
 var f=0;
 for(var i=0;i<9;i++){
   for(var j=0;j<9;j++){
-  if(isSafe(grid,i,j,grid[i][j])==false)
-  {
+  if(grid[i][j]!=0 && isvalid(grid,i,j,grid[i][j])==false)
+  {console.log(grid[i][j]);
     f=1;
     break;
   }
