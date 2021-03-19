@@ -65,7 +65,7 @@ return true;
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 const hostname = '127.0.0.1';
-const port = 1000;
+
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+"/index.html")
 })
