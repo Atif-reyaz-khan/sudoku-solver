@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const port=process.env.PORT||3000
 const N=9;
+
 const app=express();
 app.set('view engine', 'ejs');
 
@@ -123,6 +125,6 @@ else{
 })
 
 
-app.listen(4000, () => {
-  console.log(`Server running at 3000`);
+app.listen(port, () => {
+  console.log(`Server running at ${port}`);
 });
